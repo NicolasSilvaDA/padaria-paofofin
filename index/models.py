@@ -4,15 +4,22 @@ from django.db import models
 
 
 class Usuario(models.Model):
-    nome = models.CharField(max_length=255)
-    data_nasc = models.DateField()
+    pessoa_cpf = models.ForeignKey("index.Pessoa", on_delete=models.CASCADE)
     login_usuario = models.TextField()
     senha_usuario = models.TextField()
 
-class Padaria(models.Model):
+class Pessoa(models.Model):
+    cpf = models.CharField(max_length=11, primary_key=True, unique=True)
     nome = models.CharField(max_length=255)
+    data_nasc = models.DateField()
+
+class Padaria_usuario(models.Model):
+    padaria_id = models.ForeignKey("index.Padaria", on_delete=models.CASCADE)
     login_padaria = models.TextField()
     senha_padaria = models.TextField()
+
+class Padaria(models.Model):
+    nome = models.CharField(max_length=255)
 
 class Produto(models.Model):
     nome = models.CharField(max_length=255)
@@ -20,9 +27,9 @@ class Produto(models.Model):
     tempo_preparo = models.IntegerField()
 
 class Inscricao_usuario_padaria(models.Model):
-    usuario_id = models.ForeignKey("Usuario", on_delete=models.CASCADE)
-    padaria_id = models.ForeignKey("Padaria", on_delete=models.CASCADE)
+    usuario_id = models.ForeignKey("index.Usuario", on_delete=models.CASCADE)
+    padaria_id = models.ForeignKey("index.Padaria", on_delete=models.CASCADE)
 
 class Padaria_produtos(models.Model):
-    padaria_id = models.ForeignKey("Padaria", on_delete=models.CASCADE)
-    produto_id = models.ForeignKey("Produto", on_delete=models.CASCADE)
+    padaria_id = models.ForeignKey("index.Padaria", on_delete=models.CASCADE)
+    produto_id = models.ForeignKey("index.Produto", on_delete=models.CASCADE)
