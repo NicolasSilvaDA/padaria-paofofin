@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Usuario(models.Model):
+class Pessoa_usuario(models.Model):
     pessoa_cpf = models.ForeignKey("index.Pessoa", on_delete=models.CASCADE)
     login_usuario = models.TextField()
     senha_usuario = models.TextField()
@@ -27,9 +27,9 @@ class Produto(models.Model):
     tempo_preparo = models.IntegerField()
 
 class Inscricao_usuario_padaria(models.Model):
-    usuario_id = models.ForeignKey("index.Usuario", on_delete=models.CASCADE)
-    padaria_id = models.ForeignKey("index.Padaria", on_delete=models.CASCADE)
+    usuario_id = models.ForeignKey("index.Pessoa_usuario", on_delete=models.CASCADE)
+    padaria_id = models.ForeignKey("index.Padaria_usuario", on_delete=models.CASCADE)
 
 class Padaria_produtos(models.Model):
-    padaria_id = models.ForeignKey("index.Padaria", on_delete=models.CASCADE)
+    padaria_id = models.ForeignKey("index.Padaria_usuario", on_delete=models.CASCADE)
     produto_id = models.ForeignKey("index.Produto", on_delete=models.CASCADE)
