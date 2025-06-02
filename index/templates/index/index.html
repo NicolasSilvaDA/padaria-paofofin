@@ -1,5 +1,12 @@
 {% extends "global/base.html" %}
 
 {% block bodyContent %}
-    <p>HOME</p>
+    <h1>SISTEMA PADARIA PAOFOFIN</h1>
+
+    <ul>
+        <li><a href="{% url "padarias_page" %}">Ver padarias</a></li>
+        <li><a href="{% url "fornadas_page" %}">Ver fornadas</a></li>
+        <li><a href="{% url "cadastrar_fornada_page" %}">Cadastrar Fornada</a></li>
+        <li><a href="{% url "notificacoes_page" %}">Minhas notificações</a></li>
+    </ul>
 {% endblock bodyContent %}

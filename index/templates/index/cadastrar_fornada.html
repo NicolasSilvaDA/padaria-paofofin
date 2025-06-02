@@ -1,0 +1,30 @@
+{% extends "global/base.html" %}
+
+{% block bodyContent %}
+
+<h1>Cadastar Nova Fornada</h1>
+<form method="post">
+    {% comment %} {% csrf_token %} {% endcomment %}
+    <label>Padaria: </label>
+    <select name="padaria_id">
+        {% for padaria in padarias %}
+            <option value="{{ padaria.id }}">{{ padaria.padaria.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Produto: </label>
+    <select name="produto_id">
+        {% for produto in produtos %}
+            <option value="{{ produto.id }}">{{ produto.nome }}</option>
+        {% endfor %}
+    </select>
+
+    {% comment %} <label>Quantidade: </label>
+    <input type="number" name="quantidade"> {% endcomment %}
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<a href="{% url "index_page" %}">Voltar</a>
+
+{% endblock bodyContent %}

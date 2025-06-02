@@ -1,0 +1,30 @@
+{% extends "global/base.html" %}
+{% block bodyContent %}
+
+<h1>Fornadas em processo</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Padaria</th>
+            <th>Horário Previsto</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fornada in fornadas %}
+        <tr>
+            <td>{{ fornada.produto.nome }}</td>
+            <td>{{ fornada.padaria.login_padaria }}</td>
+            <td>{{ fornada.horario_previsto }}</td>
+            <td>{{ fornada.quantidade }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<a href="{% url "index_page" %}">Voltar</a>
+
+{% endblock bodyContent %}
